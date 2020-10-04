@@ -5,7 +5,7 @@
 /*   To compile: g++ cachelisttester.cpp timer.cpp -std=c++0x             */
 /*                                                                        */
 /*                                                                        */
-/*   version: 1.0                                                         */
+/*   version: 1.1: fixed string issue                                     */
 /*                                                                        */
 /**************************************************************************/
 
@@ -33,7 +33,7 @@ bool test14(std::string& error);
 const int numTests=14;
 typedef bool (*TestPtr)(std::string&);
 struct Record{
-    char word_[30];
+    std::string word_;
     int count_;
     std::string toString() const{ 
         std::string s="{";
@@ -1590,7 +1590,7 @@ std::ostream& operator<<(std::ostream& os, const Record rec){
 }
 bool operator==(const Record& a,const Record& b){
     bool rc=false;
-    if(strcmp(a.word_,b.word_)==0 && a.count_==b.count_){
+    if(a.word_==b.word_ && a.count_==b.count_){
         rc=true;
     }
     return rc;
@@ -1600,7 +1600,7 @@ bool operator!=(const Record& a,const Record& b){
 }
 bool operator <(const Record& a, const Record& b){
     bool rc=false;
-    if(strcmp(a.word_,b.word_) < 0){
+    if(a.word_ < b.word_){
         rc=true;
     }
     return rc;
