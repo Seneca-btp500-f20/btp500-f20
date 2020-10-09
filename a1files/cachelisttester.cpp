@@ -4,7 +4,8 @@
 /*                                                                        */
 /*   To compile: g++ cachelisttester.cpp timer.cpp -std=c++0x             */
 /*                                                                        */
-/*                                                                        */
+/*   version: 1.2: removed tests 5c/d, 6c/d as it was compiler specific   */
+/*                 in behaviour                                           */
 /*   version: 1.1: fixed string issue                                     */
 /*                                                                        */
 /**************************************************************************/
@@ -447,23 +448,7 @@ bool test5(std::string& error){
         }
     }
 
-    it = theList.begin();
 
-    for(int i=0;rc && i<20;i++){
-        if(++it != it){
-            error = "Error 5c: return value from prefix should be reference to iterator\n ";
-            rc=false;
-
-        }
-    }
-    it2= theList.cbegin();
-    for(int i=0;rc && i<20;i++){
-        if(++it2 != it2){
-            error = "Error 5d: return value from prefix should be reference to iterator\n ";
-            rc=false;
-
-        }
-    }
 
     it = theList.begin();
 
@@ -559,23 +544,6 @@ bool test6(std::string& error){
         }
     }
 
-    it = theList.end();
-
-    for(int i=19;rc && i>0;i--){
-        if(--it != it){
-            error = "Error 6c: return value from prefix should be reference to iterator\n ";
-            rc=false;
-
-        }
-    }
-    it2= theList.cend();
-    for(int i=19;rc && i>0;i--){
-        if(--it2 != it2){
-            error = "Error 6d: return value from prefix should be reference to iterator\n ";
-            rc=false;
-
-        }
-    }
 
     it = theList.end();
 
