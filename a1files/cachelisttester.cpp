@@ -4,6 +4,7 @@
 /*                                                                        */
 /*   To compile: g++ cachelisttester.cpp timer.cpp -std=c++0x             */
 /*                                                                        */
+/*   version: 1.3: fixed bug in test 14                                   */
 /*   version: 1.2: removed tests 5c/d, 6c/d as it was compiler specific   */
 /*                 in behaviour                                           */
 /*   version: 1.1: fixed string issue                                     */
@@ -1529,7 +1530,7 @@ bool test14(std::string& error){
     copy1=std::move(copy2);
     t.stop();
     std::cout << "move assignment on list with " << listSize << " nodes: " << t.currtime() << std::endl;
-    it = copy3.cbegin();
+    it = copy1.cbegin();
     for(int i=0;rc && i<listSize;i++){
         if(*it !=array[i]){
             rc=false;
