@@ -1,7 +1,7 @@
 template <typename T>
 class Stack{
 	void grow(){
-		int newCap=cap*2;
+		int newCap=capacity_*2;
 		T* newArray=new T[newCap];
 		for(int i=0;i<used_;i++){
 			newArray[i]=data_[i];
@@ -17,7 +17,7 @@ class Stack{
 	int capacity_; //capacity is capacity of the array (how much declared)
 
 public:
-	Stack(){
+	Stack(int cap=10){
 		data_=new T[cap];
 		used_=0;
 		capacity_=cap;		
