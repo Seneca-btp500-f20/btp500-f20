@@ -4,6 +4,8 @@
 /*                                                                        */
 /*   To compile: g++ a2tester -std=c++0x                                  */
 /*                                                                        */
+/*   v1.1: Accidentally left in some code for ensuring simple table was   */
+/*         syntacticaly correct in tester.  This has been removed         */
 /**************************************************************************/
 
 #include "table.h"
@@ -73,14 +75,6 @@ int main(void){
 		std::cout << "Looks like you still have some work left to do" << std::endl;
 	}
 	int x;
-	SimpleTable<int> t1(10000);
-	t1.update(keys[0],data[0]);
-	t1.remove(keys[0]);
-	t1.find(keys[0],x);
-	SimpleTable<int>t2 = t1;
-	t1=t2;
-	t2=std::move(t1);
-	SimpleTable<int> t3=std::move(t2);
 
 	delete [] data;
 	delete [] keys;
