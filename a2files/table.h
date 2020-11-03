@@ -2,6 +2,8 @@
 /*                                                           */
 /*    starter file for a2                                    */
 /*    													     */
+/*    v1.1: fixed typo in simple table update removed _ 	 */
+/*          from variable name                               */
 /*************************************************************/
 
 #include <string>
@@ -112,7 +114,7 @@ void SimpleTable<TYPE>::update(const std::string& key, const TYPE& value){
 			grow();
 		}
 		records_[size++]=new Record(key,value);
-		for(int i=size_-1;i>0 && records_[i] < records_[i-1];i--){
+		for(int i=size-1;i>0 && records_[i] < records_[i-1];i--){
 			Record* tmp=records_[i];
 			records_[i]=records_[i-1];
 			records_[i-1]=tmp;
