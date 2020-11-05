@@ -1,8 +1,11 @@
 /*************************************************************/
 /*                                                           */
 /*    starter file for a2                                    */
-/*    													     */
-/*    v1.1: fixed typo in simple table update removed _ 	 */
+/*                                                           */
+/*    v1.2: fixed comparison in simpletable::update...       */
+/*          note this has no affect on compilation           */
+/*          or analysis                                      */
+/*    v1.1: fixed typo in simple table update removed _      */
 /*          from variable name                               */
 /*************************************************************/
 
@@ -114,7 +117,7 @@ void SimpleTable<TYPE>::update(const std::string& key, const TYPE& value){
 			grow();
 		}
 		records_[size++]=new Record(key,value);
-		for(int i=size-1;i>0 && records_[i] < records_[i-1];i--){
+		for(int i=size-1;i>0 && records_[i]->key_ < records_[i-1]->key_;i--){
 			Record* tmp=records_[i];
 			records_[i]=records_[i-1];
 			records_[i-1]=tmp;
