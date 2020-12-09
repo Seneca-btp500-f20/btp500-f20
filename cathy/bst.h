@@ -1,4 +1,6 @@
+#include "arrayqueue.h"
 #include <iostream>
+
 template<typename T>
 class BST{
 	struct Node{
@@ -17,7 +19,7 @@ class BST{
 	//actual recursive function
 	//stroot is the root of the subtree we want 
 	//to insert the data into
-	void insert(Node* stroot,const T& data){
+	void insert(Node*& stroot,const T& data){
 		if(stroot == nullptr){
 			stroot=new Node(data);
 		}
@@ -39,6 +41,18 @@ class BST{
 			print(stroot->right_);
 		}
 	}
+	//this function deallocates the subtree
+	//with root stroot
+	void clear(Node* stroot){
+		if(stroot){
+			clear(stroot->left_);
+			clear(stroot->right_);
+			delete stroot;
+		}
+	}
+
+
+
 public:
 	//creates empty BST
 	BST(){
@@ -93,8 +107,41 @@ public:
 		print(root_);
 	}
 
+	//breadthfirst traversals are not 
+	//implemented recursively
+	void breadthFirstPrint()const{
+		//create an empty queue 
+		//to keep track of which node
+		//to deal with next
+		Queue<Node*> currentQ;
+
+		//Do we allow nullptrs to 
+		//to be added to the queue
+		//a) check for nullptrs before enqueue
+		//b) check for nullptrs on dequeue
+		if(root_){
+			//priming the queue
+			currentQ.enqueue(root_);
+
+			while(!currentQ.isEmpty()){
+				Node* curr=currentQ.front();
+				currentQ.dequeue();
+				std::cout << curr->data_ << " ";
+				if(curr->left_){
+					currentQ.enqueue(curr->left_);
+				}
+				if(curr->right_){
+					currentQ.enqueue(curr->right_);
+				}
+			}
+		}
+		std::cout << std::endl;
+
+	}
+
+	
 	//destructor
 	~BST(){
-
+		clear(root_);
 	}
 };
