@@ -4,6 +4,7 @@
 /*                                                                        */
 /*   To compile: g++ cachelisttester.cpp timer.cpp -std=c++0x             */
 /*                                                                        */
+/*   version: 1.4: fixed error message bug in test 10                     */
 /*   version: 1.3: fixed bug in test 14                                   */
 /*   version: 1.2: removed tests 5c/d, 6c/d as it was compiler specific   */
 /*                 in behaviour                                           */
@@ -919,7 +920,7 @@ bool test10(std::string& error){
     if(theList.size()!=17){
         rc=false;
         error = "Error 10b: The size() is wrong after calling erase(from,to) on last 3 nodes in list\n";
-        error = "your function returned: ";
+        error += "your function returned: ";
         error += std::to_string(theList.size());
         error += ".  It should return: 17";
     }
